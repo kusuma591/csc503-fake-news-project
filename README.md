@@ -2,4 +2,5 @@
 Fake News Detection (title to be finalized)
 
 Team: Jay, Markus, Olivia, Kusuma
+
 University of Victoria
