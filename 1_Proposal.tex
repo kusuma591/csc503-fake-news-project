@@ -1,0 +1,78 @@
+\documentclass[sigconf]{acmart}
+% Cleaning 
+\pagestyle{fancy}
+\settopmatter{printacmref=false}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+\pagestyle{plain}
+\fancyhead{}
+\settopmatter{printacmref=false, printfolios=false}
+% Copyright
+\setcopyright{none}
+\settopmatter{printacmref=false}
+\acmDOI{}
+
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+\setlength{\headsep}{0pt}
+\setlength{\topskip}{0pt}
+\setlength{\topmargin}{0pt}
+\setlength{\topsep}{0pt}
+\setlength{\partopsep}{0pt}
+\usepackage{mdwlist}
+\usepackage{amsmath}
+
+\usepackage{needspace}
+
+\begin{document}
+\title{Fake News Detection Capabilities Over Topic and Time Shift}
+\author{Olivia Eskes}
+\affiliation{
+  \institution{University of Victoria}
+}
+\email{ceskes@uvic.ca}
+\author{Jay Robertson}
+\affiliation{
+  \institution{University of Victoria}
+}
+\email{jayrobertson@uvic.ca}
+
+\author{Markus Sekhon}
+\affiliation{
+ \institution{University of Victoria}
+}\email{msekhon@uvic.ca}
+\author{Kusuma Mattipa}
+\affiliation{
+  \institution{University of Victoria}
+}
+\email{ kusumamattipa@uvic.ca}
+
+\begin{abstract}
+Digital misinformation is a prevalent issue that can have a substantial impact on public health and perception when undetected. Machine models exist that can be used to predict the authenticity of news articles, but the accuracy degrades over time and across topics. The project seeks to create and evaluate a fake news detection system that can classify news articles as real or fake, and use it to determine the detection accuracy under topic shift, temporal shift, and their combination. The codebase and installation instructions are obtainable at https://github.com/kusuma591/csc503-fake-news-project.
+\end{abstract}
+
+\keywords{Fake news detection, machine learning, detection accuracy}
+\maketitle
+
+\section{Introduction}
+The prevalence of fake news has become a significant problem with the speed of digital information spread. For example, unfounded claims about the drug ivermectin’s curative effects were spread during the COVID-19 pandemic. It can be difficult to identify whether the contents of an article are true or false simply by reading it. When readers encountered the claims about ivermectin, there was an increase in its prescription due to the inability to identify the news as fake \cite{ivermectin}. Misinformation can easily influence how people understand the world, and so fake news detection is crucial to preventing it. Existing machine learning models often use news article training data from a single topic collected over a specific time frame to classify an input article as real or fake automatically, limiting necessary manual review \cite{fakeNews}. However, a common issue with these models is the degradation in the detector’s accuracy over time and topics. New events and topics can appear after a model has been trained, meaning the system may encounter vocabulary or patterns that were not present in its training data. Understanding how accuracy degrades with topic shift, temporal shift and their combination could help others develop models that are more reliable in real world environments where published content is constantly changing. Research on this topic typically focuses on one shift or the other while their combined effect has received less attention. We propose to determine the effect of topic and time shift both individually and together on the accuracy of a machine learning model when classifying news as either fake or real.
+\\\\
+\vspace{-0.9cm}
+\subsection{Motivating Example}
+A detector trained on COVID-19 misinformation in 2020 may later
+encounter a false article about a new car manufacturing technology in 2026. Because both the time period and topic have shifted, the detector may misclassify the article despite performing well on the original data. Measuring changes in accuracy under each condition could help future researchers develop more stable fake news detection models.
+
+\section{Problem Definition}
+Given a universal set of news articles $\mathrm{U}$ and a training corpus $\mathrm{A\subset U}$, the task is to evaluate the performance of a mapping function $\mathrm{g(a):U \rightarrow \{0,1\}}$ from a set of articles where $\mathrm{g(a)} = 1$ if article $\mathrm{a}$ is fake and $0$ otherwise. Let $\mathrm{T}$ be the set of all publication years present in $\mathrm{A}$ and $\mathrm{S}$ be a set of topics present in $\mathrm{A}$. Each article $\mathrm{a\in U}$ is associated with a publication year $\mathrm{t(a)}$ and topic $\mathrm{s(a)}$. The main objective of our work is to determine the prediction accuracy of $\mathrm{g(\hat{a})}$ for an unseen article $\hat{a}\notin \mathrm{A}$ across cases where $\mathrm{t(\hat{a})\in T}$ or $\mathrm{t(\hat{a})\notin T}$ and $\mathrm{s(\hat{a})\in S}$ or $\mathrm{s(\hat{a})\notin S}$. 
+
+\subsection{Running Example}
+Suppose a fake news prediction model is trained on articles published between 2015 and 2020 covering the topic of politics. It is then evaluated on its accuracy with multiple unseen articles on four conditions: (I) Base topic, base time - articles from 2017 about politics; (II) New topic, base time - articles from 2016 about healthcare; (III) Base topic, new time - articles from 2022 about politics; (IV) New topic, new time - articles from 2025 about healthcare. For each unseen article, the model predicts 1 if the article is fake and 0 otherwise. The predictions are then compared to the known labels and each condition gets an accuracy score that will allow us to measure the model’s ability to handle topic shifts, time shifts, and the combination of the two.
+
+\section{Team Justification}
+Our group shares a strong interest in fake news detection and its growing importance in the modern information landscape. As misinformation becomes increasingly prevalent and difficult to identify, we believe this is a meaningful and relevant problem to investigate.
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{bibliography.bib} 
+\vfill
+
+\end{document}
+
