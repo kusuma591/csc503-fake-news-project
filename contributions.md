@@ -8,6 +8,6 @@
 
 ## Milestone 2 - Review
 - Jay – Comparative Analysis, Hierarchy, Bibliography, and LaTeX document
-- Olivia – 
+- Olivia – Hierarchy Section, editing down
 - Markus – Helped with: Abstract, History, Comparative Analysis, and Position Your Project
 - Kusuma – 
