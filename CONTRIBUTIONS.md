@@ -3,7 +3,7 @@
 ## Jay Robertson
 
 - Section 3.1: Formal Definition (Input & Output)
-- LaTeX/Overleaf formatting and report compilation
+- LaTeX formatting and report compilation
 
 ## Olivia Eskes
 
