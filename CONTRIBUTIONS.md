@@ -25,3 +25,9 @@
 - Set up GitHub repository and documentation
 - Wrote README with installation and usage instructions
 - Ran experiments and produced results.csv
+
+
+
+## Team Collaboration
+- Report writing coordinated via shared Google Doc
+- GitHub issues used for task tracking and assignment
