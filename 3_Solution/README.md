@@ -8,7 +8,7 @@ Team: Olivia Eskes · Jay Robertson · Markus Sekhon · Kusuma Mattipa
 
 ## Overview
 
-Machine learning models for fake news detection are typically trained on a fixed topic and time window. This project evaluates how much classification accuracy degrades when that distribution shifts — in topic, in time, or both.
+Machine learning models for fake news detection are typically trained on a fixed topic and time window. This project evaluates how much classification accuracy degrades when that distribution shifts in topic, in time, or both.
 
 We implement the **AMPETTS** framework (Algorithm for Model Performance Evaluation under Topic, Temporal, and combined Shift) using:
 
@@ -82,7 +82,7 @@ Expected output: partition summary table → TF-IDF fit → results table → CS
 
 ## Running on Real Data
 
-> **Note:** If you received the project as a zip file, the CSV files are already in `data/raw/` — skip Step 1 and go straight to Step 2.
+> **Note:** If you received the project as a zip file, the CSV files are already in `data/raw/` skip Step 1 and go straight to Step 2.
 
 ### Step 1: Download datasets (only needed if cloning from GitHub)
 
