@@ -1,0 +1,9 @@
+Classifier,Condition,Accuracy,Precision,Recall,F1,Δ Accuracy,Δ Precision,Δ Recall,Δ F1
+Naive Bayes,baseline,1.0,1.0,1.0,1.0,-,-,-,-
+Naive Bayes,temporal,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0
+Naive Bayes,topic,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0
+Naive Bayes,both,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0
+Linear SVM,baseline,1.0,1.0,1.0,1.0,-,-,-,-
+Linear SVM,temporal,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0
+Linear SVM,topic,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0
+Linear SVM,both,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0
