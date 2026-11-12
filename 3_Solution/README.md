@@ -143,28 +143,29 @@ numpy.random.seed(42)
 
 ```
 csc503-fake-news-project/
-├── README.md
-├── requirements.txt
-├── quickstart.py          ← demo run, no downloads required
-├── data/
-│   ├── raw/               ← place downloaded CSV files here
-│   └── preprocessed/      ← generated partitions (auto-created)
-├── output/
-│   └── models/            ← saved vectorizer + model .pkl files
-├── evaluation/
-│   └── results/           ← output CSVs with metrics per condition
-└── src/
-    ├── main.py            ← full pipeline entry point
+└── 3_Solution/
+    ├── README.md
+    ├── requirements.txt
+    ├── quickstart.py          ← demo run, no downloads required
     ├── data/
-    │   ├── load.py        ← reads and merges both datasets
-    │   └── preprocess.py  ← partitions into 4 conditions
-    ├── features/
-    │   └── tfidf.py       ← TF-IDF fit / transform
-    ├── models/
-    │   ├── naive_bayes.py ← Multinomial NB wrapper
-    │   └── svm.py         ← Linear SVM wrapper
-    └── evaluation/
-        └── metrics.py     ← accuracy / precision / recall / F1 / delta
+    │   ├── raw/               ← place downloaded CSV files here
+    │   └── preprocessed/      ← generated partitions (auto-created)
+    ├── output/
+    │   └── models/            ← saved vectorizer + model .pkl files
+    ├── evaluation/
+    │   └── results/           ← output CSVs with metrics per condition
+    └── src/
+        ├── main.py            ← full pipeline entry point
+        ├── data/
+        │   ├── load.py        ← reads and merges both datasets
+        │   └── preprocess.py  ← partitions into 4 conditions
+        ├── features/
+        │   └── tfidf.py       ← TF-IDF fit / transform
+        ├── models/
+        │   ├── naive_bayes.py ← Multinomial NB wrapper
+        │   └── svm.py         ← Linear SVM wrapper
+        └── evaluation/
+            └── metrics.py     ← accuracy / precision / recall / F1 / delta
 ```
 
 ---
