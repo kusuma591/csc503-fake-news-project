@@ -1,6 +1,6 @@
 # Fake News Detection Under Topic and Temporal Shift
 
-**CSC 503 / SENG 474 — Data Mining | University of Victoria | Fall 2026**
+**CSC 503 / SENG 474 - Data Mining | University of Victoria | Fall 2026**
 
 Team: Olivia Eskes · Jay Robertson · Markus Sekhon · Kusuma Mattipa
 
@@ -84,7 +84,7 @@ Expected output: partition summary table → TF-IDF fit → results table → CS
 
 > **Note:** If you received the project as a zip file, the CSV files are already in `data/raw/` — skip Step 1 and go straight to Step 2.
 
-### Step 1 — Download datasets (only needed if cloning from GitHub)
+### Step 1: Download datasets (only needed if cloning from GitHub)
 
 **Training data** (politics, pre-2018):
 https://www.kaggle.com/datasets/emineyetm/fake-news-detection-datasets
@@ -96,7 +96,7 @@ https://www.kaggle.com/datasets/mahdimashayekhi/fake-news-detection-dataset
 
 Download and place `fake_news_dataset.csv` in `data/raw/`
 
-### Step 2 — Run the full pipeline
+### Step 2 : Run the full pipeline
 
 ```bash
 python src/main.py
