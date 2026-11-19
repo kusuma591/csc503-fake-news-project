@@ -1,6 +1,6 @@
 # Fake News Detection Under Topic and Temporal Shift
 
-**CSC 503 / SENG 474 - Data Mining | University of Victoria | Fall 2026**
+**CSC 503 / SENG 474 — Data Mining | University of Victoria | Fall 2026**
 
 Team: Olivia Eskes · Jay Robertson · Markus Sekhon · Kusuma Mattipa
 
@@ -8,7 +8,7 @@ Team: Olivia Eskes · Jay Robertson · Markus Sekhon · Kusuma Mattipa
 
 ## Overview
 
-Machine learning models for fake news detection are typically trained on a fixed topic and time window. This project evaluates how much classification accuracy degrades when that distribution shifts - in topic, in time, or both.
+Machine learning models for fake news detection are typically trained on a fixed topic and time window. This project evaluates how much classification accuracy degrades when that distribution shifts — in topic, in time, or both.
 
 We implement the **AMPETTS** framework (Algorithm for Model Performance Evaluation under Topic, Temporal, and combined Shift) using:
 
@@ -25,6 +25,7 @@ Each classifier is evaluated under four conditions:
 | Topic shift    | World news                | Pre-2018    |
 | Both shifts    | World news                | Post-2018   |
 
+In addition to these four evaluation conditions, we implement 5-fold stratified cross-validation to assess the consistency and generalization performance of both classifiers on the training data distribution.
 ---
 
 ## Illustrative Sample
@@ -60,7 +61,7 @@ pip install -r requirements.txt
 ```bash
 # 1. Clone the repository
 git clone https://github.com/kusuma591/csc503-fake-news-project.git
-cd csc503-fake-news-project/3_Solution
+cd csc503-fake-news-project
 
 # 2. Install dependencies
 pip install -r requirements.txt
@@ -82,8 +83,9 @@ Expected output: partition summary table → TF-IDF fit → results table → CS
 
 ## Running on Real Data
 
+> **Note:** If you received the project as a zip file, the CSV files are already in `data/raw/` — skip Step 1 and go straight to Step 2.
 
-### Step 1 - Download datasets (only needed if cloning from GitHub)
+### Step 1 — Download datasets (only needed if cloning from GitHub)
 
 **Training data**:
 https://www.kaggle.com/datasets/emineyetm/fake-news-detection-datasets
@@ -95,7 +97,7 @@ https://www.kaggle.com/datasets/mahdimashayekhi/fake-news-detection-dataset
 
 Download and place `fake_news_dataset.csv` in `data/raw/`
 
-### Step 2 - Run the full pipeline
+### Step 2 — Run the full pipeline
 
 ```bash
 python src/main.py
@@ -105,6 +107,11 @@ Or use the quickstart with real data:
 
 ```bash
 python quickstart.py --real
+```
+
+To also run the 5-fold cross validation run with `--cross-validation`. For example:
+```bash
+python src/main.py --cross-validation
 ```
 
 ---
@@ -144,26 +151,27 @@ numpy.random.seed(42)
 csc503-fake-news-project/
 ├── README.md
 ├── requirements.txt
-├── quickstart.py          ← demo run, no downloads required
+├── quickstart.py                ← demo run, no downloads required
 ├── data/
-│   ├── raw/               ← place downloaded CSV files here
-│   └── preprocessed/      ← generated partitions (auto-created)
+│   ├── raw/                     ← place downloaded CSV files here
+│   └── preprocessed/            ← generated partitions (auto-created)
 ├── output/
-│   └── models/            ← saved vectorizer + model .pkl files
+│   └── models/                  ← saved vectorizer + model .pkl files
 ├── evaluation/
-│   └── results/           ← output CSVs with metrics per condition
+│   └── results/                 ← output CSVs with metrics per condition
 └── src/
-    ├── main.py            ← full pipeline entry point
+    ├── main.py                  ← full pipeline entry point
     ├── data/
-    │   ├── load.py        ← reads and merges both datasets
-    │   └── preprocess.py  ← partitions into 4 conditions
+    │   ├── load.py              ← reads and merges both datasets
+    │   └── preprocess.py        ← partitions into 4 conditions
     ├── features/
-    │   └── tfidf.py       ← TF-IDF fit / transform
+    │   └── tfidf.py             ← TF-IDF fit / transform
     ├── models/
-    │   ├── naive_bayes.py ← Multinomial NB wrapper
-    │   └── svm.py         ← Linear SVM wrapper
+    │   ├── naive_bayes.py       ← Multinomial NB wrapper
+    │   └── svm.py               ← Linear SVM wrapper
     └── evaluation/
-        └── metrics.py     ← accuracy / precision / recall / F1 / delta
+        ├── cross_validation.py  ← k-fold cross validation
+        └── metrics.py           ← accuracy / precision / recall / F1 / delta
 ```
 
 ---

@@ -39,7 +39,7 @@ def make_article(fake, topic, date):
         "text_combined": title + " " + body,
         "label": int(fake),
         "topic": topic,
-        "date": date,
+        "date": date
     }
 
 
@@ -47,24 +47,36 @@ def make_synthetic_data(n=500):
     rows = []
 
     for _ in range(n):
-        date = pd.Timestamp("2017-01-01") + pd.Timedelta(days=random.randint(0, 364))
-        rows.append(make_article(True, "politics", date))
-        rows.append(make_article(False, "politics", date))
+        date = pd.Timestamp("2016-01-01") + \
+            pd.Timedelta(days=random.randint(0, 364))
+        rows.append(make_article(True, "politics", date) |\
+                    {"source_dataset": "dataset1"})
+        rows.append(make_article(False, "politics", date) |\
+                    {"source_dataset": "dataset1"})
 
     for _ in range(n // 2):
-        date = pd.Timestamp("2020-01-01") + pd.Timedelta(days=random.randint(0, 364))
-        rows.append(make_article(True, "politics", date))
-        rows.append(make_article(False, "politics", date))
+        date = pd.Timestamp("2022-01-01") + \
+            pd.Timedelta(days=random.randint(0, 364))
+        rows.append(make_article(True, "politics", date) |\
+                    {"source_dataset": "dataset2"})
+        rows.append(make_article(False, "politics", date) |\
+                    {"source_dataset": "dataset2"})
 
     for _ in range(n // 2):
-        date = pd.Timestamp("2017-06-01") + pd.Timedelta(days=random.randint(0, 180))
-        rows.append(make_article(True, "world", date))
-        rows.append(make_article(False, "world", date))
+        date = pd.Timestamp("2016-06-01") + \
+            pd.Timedelta(days=random.randint(0, 180))
+        rows.append(make_article(True, "world", date) |\
+                    {"source_dataset": "dataset1"})
+        rows.append(make_article(False, "world", date) |\
+                    {"source_dataset": "dataset1"})
 
     for _ in range(n // 2):
-        date = pd.Timestamp("2021-01-01") + pd.Timedelta(days=random.randint(0, 364))
-        rows.append(make_article(True, "world", date))
-        rows.append(make_article(False, "world", date))
+        date = pd.Timestamp("2022-01-01") + \
+            pd.Timedelta(days=random.randint(0, 364))
+        rows.append(make_article(True, "world", date) |\
+                    {"source_dataset": "dataset2"})
+        rows.append(make_article(False, "world", date) |\
+                    {"source_dataset": "dataset2"})
 
     return pd.DataFrame(rows)
 

@@ -2,6 +2,7 @@ import random
 import numpy as np
 import sys
 import os
+import argparse
 
 random.seed(42)
 np.random.seed(42)
@@ -14,9 +15,10 @@ from features import tfidf
 from models import naive_bayes as nb_module
 from models import svm as svm_module
 from evaluation import metrics as met
+from evaluation import cross_validation as cv_module
 
 
-def run():
+def run(run_cv=False):
     print("AMPETTS: Fake News Detection Under Topic and Temporal Shift")
     print("Team 6R: Olivia Eskes, Jay Robertson, Markus Sekhon, Kusuma Mattipa")
     print("CSC 503 Data Mining, University of Victoria")
@@ -41,6 +43,13 @@ def run():
     train_df, test_df, temporal, topic, both = partition(df)
     print_partition_summary(train_df, test_df, temporal, topic, both)
     print()
+    
+    if run_cv:
+        print("Step 2.5: Running 5-fold cross-validation...")
+        cv_results = cv_module.run_cross_validation(
+            train_df,
+            n_splits=5
+        )    
 
     print("Step 3: Fitting TF-IDF on training data only...")
     vec = tfidf.fit(train_df["text_combined"])
@@ -105,4 +114,16 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    parser = argparse.ArgumentParser(
+        description="AMPETTS: Fake News Detection Under Topic and Temporal Shift"
+    )
+
+    parser.add_argument(
+        "--cross-validation",
+        action="store_true",
+        help="Run 5-fold stratified cross-validation before main evaluation."
+    )
+    
+    args = parser.parse_args()
+
+    run(run_cv=args.cross_validation)

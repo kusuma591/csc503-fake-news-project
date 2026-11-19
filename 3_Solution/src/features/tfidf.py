@@ -6,7 +6,7 @@ MODEL_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "..",
 os.makedirs(MODEL_DIR, exist_ok=True)
 
 
-def fit(train_texts):
+def fit(train_texts, save=True):
     vec = TfidfVectorizer(
         max_features=50000,
         sublinear_tf=True,
@@ -14,7 +14,10 @@ def fit(train_texts):
         ngram_range=(1, 2)
     )
     vec.fit(train_texts)
-    joblib.dump(vec, os.path.join(MODEL_DIR, "tfidf_vectorizer.pkl"))
+    
+    if save:
+        joblib.dump(vec, os.path.join(MODEL_DIR, "tfidf_vectorizer.pkl"))
+    
     return vec
 
 
