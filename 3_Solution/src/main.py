@@ -24,6 +24,15 @@ def run():
 
     print("Step 1: Loading datasets...")
     df = load_and_merge()
+    
+    print("\n  Dataset topic and label distribution:")
+    print("  "+
+        df.groupby(["source_dataset", "topic", "label"])
+        .size()
+        .unstack(fill_value=0)
+        .to_string()
+    )
+    
     print(f"  Total articles loaded: {len(df):,}")
     print(f"  Fake: {df['label'].sum():,}   Real: {(df['label'] == 0).sum():,}")
     print()
@@ -72,6 +81,7 @@ def run():
                 continue
 
             y_pred = clf_mod.predict(clf, X)
+            
             m = met.evaluate(y, y_pred)
             results[clf_name][cond] = m
             print(f"    {cond:12s}  accuracy={m['accuracy']:.4f}  precision={m['precision']:.4f}  recall={m['recall']:.4f}  f1={m['f1']:.4f}")
