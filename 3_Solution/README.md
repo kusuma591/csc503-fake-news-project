@@ -1,6 +1,6 @@
 # Fake News Detection Under Topic and Temporal Shift
 
-**CSC 503 / SENG 474 — Data Mining | University of Victoria | Fall 2026**
+**CSC 503 / SENG 474 - Data Mining | University of Victoria | Fall 2026**
 
 Team: Olivia Eskes · Jay Robertson · Markus Sekhon · Kusuma Mattipa
 
@@ -8,7 +8,7 @@ Team: Olivia Eskes · Jay Robertson · Markus Sekhon · Kusuma Mattipa
 
 ## Overview
 
-Machine learning models for fake news detection are typically trained on a fixed topic and time window. This project evaluates how much classification accuracy degrades when that distribution shifts — in topic, in time, or both.
+Machine learning models for fake news detection are typically trained on a fixed topic and time window. This project evaluates how much classification accuracy degrades when that distribution shifts - in topic, in time, or both.
 
 We implement the **AMPETTS** framework (Algorithm for Model Performance Evaluation under Topic, Temporal, and combined Shift) using:
 
@@ -83,7 +83,7 @@ Expected output: partition summary table → TF-IDF fit → results table → CS
 ## Running on Real Data
 
 
-### Step 1 — Download datasets (only needed if cloning from GitHub)
+### Step 1 - Download datasets (only needed if cloning from GitHub)
 
 **Training data**:
 https://www.kaggle.com/datasets/emineyetm/fake-news-detection-datasets
@@ -95,7 +95,7 @@ https://www.kaggle.com/datasets/mahdimashayekhi/fake-news-detection-dataset
 
 Download and place `fake_news_dataset.csv` in `data/raw/`
 
-### Step 2 — Run the full pipeline
+### Step 2 - Run the full pipeline
 
 ```bash
 python src/main.py
