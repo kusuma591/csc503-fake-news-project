@@ -60,7 +60,7 @@ pip install -r requirements.txt
 ```bash
 # 1. Clone the repository
 git clone https://github.com/kusuma591/csc503-fake-news-project.git
-cd csc503-fake-news-project
+cd csc503-fake-news-project/3_Solution
 
 # 2. Install dependencies
 pip install -r requirements.txt
@@ -82,7 +82,6 @@ Expected output: partition summary table → TF-IDF fit → results table → CS
 
 ## Running on Real Data
 
-> **Note:** If you received the project as a zip file, the CSV files are already in `data/raw/` — skip Step 1 and go straight to Step 2.
 
 ### Step 1 — Download datasets (only needed if cloning from GitHub)
 
