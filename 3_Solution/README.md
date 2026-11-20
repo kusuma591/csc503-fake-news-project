@@ -109,9 +109,15 @@ Or use the quickstart with real data:
 python quickstart.py --real
 ```
 
-To also run the 5-fold cross validation run with `--cross-validation`. For example:
+### Command line arguments
+
+`--cross-validation` : Run 5-fold stratified cross-validation before main evaluation.
+
+`--confusion-matrices` : Save plots of the confusion matrices for each model and condition combination.
+
+**Full example**:
 ```bash
-python src/main.py --cross-validation
+python src/main.py --cross-validation --confusion-matrices
 ```
 
 ---

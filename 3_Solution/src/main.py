@@ -18,7 +18,7 @@ from evaluation import metrics as met
 from evaluation import cross_validation as cv_module
 
 
-def run(run_cv=False):
+def run(run_cv=False, output_cm=False):
     print("AMPETTS: Fake News Detection Under Topic and Temporal Shift")
     print("Team 6R: Olivia Eskes, Jay Robertson, Markus Sekhon, Kusuma Mattipa")
     print("CSC 503 Data Mining, University of Victoria")
@@ -104,7 +104,7 @@ def run(run_cv=False):
     print()
     print("Step 5: Saving results...")
     df_results = met.build_results_table(results, deltas)
-    met.save_results(df_results)
+    met.save_results(df_results, output_cm)
 
     print()
     print("RESULTS TABLE")
@@ -124,6 +124,12 @@ if __name__ == "__main__":
         help="Run 5-fold stratified cross-validation before main evaluation."
     )
     
+    parser.add_argument(
+        "--confusion-matrices",
+        action="store_true",
+        help="Save plots of the confusion matrices for each model and condition combination."
+    )
+        
     args = parser.parse_args()
 
-    run(run_cv=args.cross_validation)
+    run(run_cv=args.cross_validation, output_cm=args.confusion_matrices)
