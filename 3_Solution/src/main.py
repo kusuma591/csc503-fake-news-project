@@ -3,6 +3,8 @@ import numpy as np
 import sys
 import os
 import argparse
+from sklearn.svm import LinearSVC
+from sklearn.naive_bayes import MultinomialNB
 
 random.seed(42)
 np.random.seed(42)
@@ -18,7 +20,7 @@ from evaluation import metrics as met
 from evaluation import cross_validation as cv_module
 
 
-def run(run_cv=False, output_cm=False):
+def run(run_cv=False, output_cm=False, tuned=False):
     print("AMPETTS: Fake News Detection Under Topic and Temporal Shift")
     print("Team 6R: Olivia Eskes, Jay Robertson, Markus Sekhon, Kusuma Mattipa")
     print("CSC 503 Data Mining, University of Victoria")
@@ -66,17 +68,35 @@ def run(run_cv=False, output_cm=False):
     }
 
     print("Step 4: Training classifiers and evaluating...")
-    classifiers = {
-        "Naive Bayes": nb_module,
-        "Linear SVM": svm_module,
-    }
+    if tuned:
+        classifiers = {
+            "Naive Bayes": MultinomialNB(alpha=0.001),
+            "Linear SVM": LinearSVC(
+                C=5.0,
+                penalty="l1",
+                dual=False,
+                max_iter=2000,
+                random_state=42
+            )
+        }
+    else:
+        classifiers = {
+            "Naive Bayes": nb_module,
+            "Linear SVM": svm_module
+        }
 
     results = {}
     deltas = {}
 
     for clf_name, clf_mod in classifiers.items():
         print(f"\n  {clf_name}")
-        clf = clf_mod.train(X_train, train_df["label"])
+
+        if tuned:
+            clf = clf_mod
+            clf.fit(X_train, train_df["label"])
+        else:
+            clf = clf_mod.train(X_train, train_df["label"])
+
         results[clf_name] = {}
         deltas[clf_name] = {}
 
@@ -89,7 +109,10 @@ def run(run_cv=False, output_cm=False):
                 }
                 continue
 
-            y_pred = clf_mod.predict(clf, X)
+            if tuned:
+                y_pred = clf.predict(X)
+            else:
+                y_pred = clf_mod.predict(clf, X)
             
             m = met.evaluate(y, y_pred)
             results[clf_name][cond] = m
@@ -104,7 +127,13 @@ def run(run_cv=False, output_cm=False):
     print()
     print("Step 5: Saving results...")
     df_results = met.build_results_table(results, deltas)
-    met.save_results(df_results, output_cm)
+    filename = "tuned_results.csv" if tuned else "default_results.csv"
+
+    met.save_results(
+        df_results,
+        output_cm=output_cm,
+        filename=filename
+    )
 
     print()
     print("RESULTS TABLE")
@@ -129,7 +158,16 @@ if __name__ == "__main__":
         action="store_true",
         help="Save plots of the confusion matrices for each model and condition combination."
     )
-        
+
+    # Allow tuned hyperparameters
+    parser.add_argument(
+        "--tuned",
+        action="store_true",
+        help="Use the best hyperparameters from RQ2."
+    )
+
     args = parser.parse_args()
 
-    run(run_cv=args.cross_validation, output_cm=args.confusion_matrices)
+    run(
+        run_cv=args.cross_validation, output_cm=args.confusion_matrices, tuned=args.tuned
+    )
