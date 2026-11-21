@@ -133,7 +133,7 @@ Example columns:
 | Naive Bayes | temporal  | 0.78     | 0.80      | 0.76   | 0.78 | -0.15      | -0.15 |
 | ...         | ...       | ...      | ...       | ...    | ...  | ...        | ...   |
 
-_(Actual values depend on dataset version and random seed.)_
+(Actual values depend on dataset version and random seed.)
 
 ---
 
