@@ -9,16 +9,11 @@ DS2_FILE = os.path.join(RAW_DIR, "fake_news_dataset.csv")
 
 def _normalize_topic(value):
     if pd.isna(value):
-        return "unknown"
-
+        return "world"
     topic = str(value).strip().lower()
-
-    if topic == "politicsnews":
+    if any(kw in topic for kw in ("politic", "government", "left-news")):
         return "politics"
-    elif topic == "news":
-        return "worldnews"
-
-    return topic
+    return "world"
 
 
 def _load_dataset1():
