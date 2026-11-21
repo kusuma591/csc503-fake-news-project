@@ -20,6 +20,12 @@ fig, axes = plt.subplots(1, 2, figsize=(7, 2.6))
 # --------------------------------
 svm = df[df["Model"] == "SVM"]
 
+# Different styles make overlapping lines easier to see
+styles = {
+    "l1": {"linestyle": "-", "marker": "o"},
+    "l2": {"linestyle": "--", "marker": "s"}
+}
+
 for penalty in ["l1", "l2"]:
     subset = svm[
         svm["Penalty"] == penalty
@@ -29,7 +35,10 @@ for penalty in ["l1", "l2"]:
         subset["C"],
         subset["Mean_F1"],
         yerr=subset["Std_F1"],
-        marker="o",
+        linestyle=styles[penalty]["linestyle"],
+        marker=styles[penalty]["marker"],
+        linewidth=1.5,
+        markersize=5,
         capsize=2,
         label=penalty.upper()
     )
@@ -55,7 +64,10 @@ axes[1].errorbar(
     nb["Alpha"],
     nb["Mean_F1"],
     yerr=nb["Std_F1"],
+    linestyle="-",
     marker="o",
+    linewidth=1.5,
+    markersize=5,
     capsize=2
 )
 
