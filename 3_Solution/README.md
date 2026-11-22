@@ -8,7 +8,7 @@ Team: Olivia Eskes · Jay Robertson · Markus Sekhon · Kusuma Mattipa
 
 ## Overview
 
-Machine learning models for fake news detection are typically trained on a fixed topic and time window. This project evaluates how much classification accuracy degrades when that distribution shifts — in topic, in time, or both.
+Machine learning models for fake news detection are typically trained on a fixed topic and time window. This project evaluates how much classification accuracy degrades when that distribution shifts -in topic, in time, or both.
 
 We implement the **AMPETTS** framework (Algorithm for Model Performance Evaluation under Topic, Temporal, and combined Shift) using:
 
@@ -179,9 +179,9 @@ Output is written to `evaluation/results/default_results.csv` for the original c
 
 Additional results are saved to:
 
-- `evaluation/results/cross_validation_results.csv` — 5-fold cross-validation results.
-- `evaluation/results/hyperparameter_results.csv` — RQ2 hyperparameter results.
-- `evaluation/results/rq2_hyperparameters_combined.pdf` — RQ2 comparison graph.
+- `evaluation/results/cross_validation_results.csv` - 5-fold cross-validation results.
+- `evaluation/results/hyperparameter_results.csv` - RQ2 hyperparameter results.
+- `evaluation/results/rq2_hyperparameters_combined.pdf` - RQ2 comparison graph.
 
 Example columns:
 
